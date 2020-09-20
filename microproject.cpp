@@ -62,12 +62,10 @@ void receiptgeneration()
 int passwords()
 {
 
-
-
-cout << "Please enter login password:";
-    char pass[10] = { 0 };
+    cout << "Please enter login password:";
+    char pass[10] = {0};
     char temp[10] = "1331";
-    for (int j = 0; j < 10;j++)
+    for (int j = 0; j < 10; j++)
     {
         pass[j] = _getch();
         if (pass[j] == 13)
@@ -80,10 +78,10 @@ cout << "Please enter login password:";
             _putch('*');
         }
     }
-    if(strcmp(temp,pass)==0)
+    if (strcmp(temp, pass) == 0)
     {
-        cout<<endl;
-        cout<<"Login Successful!"<<endl;
+        cout << endl;
+        cout << "Login Successful!" << endl;
         return 1;
     }
     else
@@ -118,8 +116,8 @@ public:
             cout << "rate per dozen:300" << endl;
             cout << "rate per unit:50" << endl;
             available = temp;
-            ofstream debug("logsheet.txt",ios::app);
-            debug<<"stock added:"<<change<<endl;
+            ofstream debug("logsheet.txt", ios::app);
+            debug << "stock added:" << change << endl;
         }
         else //if dont want to change stock.
         {
