@@ -31,18 +31,34 @@ void receiptinsert()
 }
 void receiptgeneration()
 {
+    // to view entry of all bills
     ofstream myfile("file.txt", ios::app);
     myfile << "<><><><><><><><><><><><><><<><><><><><><><><><><><><><><><><><><<><><><><><><><><><><><><><><><><><><<><><><><><><><><><><><><><><><><><\n<>................................................JMD AAGENCY.........................................................................<>\n<><><><><><><><><><><><><><<><><><><><><><><><><><><><><><><><><<><><><><><><><><><><><><><><><><><><<><><><><><><><><><><><><><><><><><" << endl;
     myfile << "NAME OF BUYEE:" << buyee << endl;
     myfile << "\n\n\nITEM NAME\t\t|\t\tQUANTITY(dozens)\t\t|\t\tRATE PER DOZEN \n";
     myfile << "......................................................................." << endl;
-    myfile << "NOTEBOOK"
-           << "\t\t|\t\t" << totaldoz << "\t\t\t\t\t\t|\t\t" << rateperdoz << "             " << endl;
+    myfile << "NOTEBOOK";
+    myfile << "\t\t|\t\t" << totaldoz << "\t\t\t\t\t\t|\t\t" << rateperdoz << "             " << endl;
     myfile << "........................................................................" << endl;
-    myfile << " Total Amount=                                                                " << count << "Rs" << endl;
+    myfile << " Total Amount=                                           " << count << "Rs" << endl;
     myfile << "........................................................................" << endl;
+    myfile << "\n\n\n"
+           << endl;
     myfile.close();
+    // to view current bill.
+    ofstream file("bill.txt");
+    myfile << "<><><><><><><><><><><><><><<><><><><><><><><><><><><><><><><><><<><><><><><><><><><><><><><><><><><><<><><><><><><><><><><><><><><><><><\n<>................................................JMD AAGENCY.........................................................................<>\n<><><><><><><><><><><><><><<><><><><><><><><><><><><><><><><><><<><><><><><><><><><><><><><><><><><><<><><><><><><><><><><><><><><><><><" << endl;
+    file << "NAME OF BUYEE:" << buyee << endl;
+    file << "\n\n\nITEM NAME\t\t|\t\tQUANTITY(dozens)\t\t|\t\tRATE PER DOZEN \n";
+    file << "......................................................................." << endl;
+    file << "NOTEBOOK"
+         << "\t\t|\t\t" << totaldoz << "\t\t\t\t\t\t|\t\t" << rateperdoz << "             " << endl;
+    file << "........................................................................" << endl;
+    file << " Total Amount=                                                                " << count << "Rs" << endl;
+    file << "........................................................................" << endl;
+    file.close();
 
+    //    to view bill in cmd:
     cout << "<><><><><><><><><><><><><><<><><><><><><><><><><><><><><><><><><<><><><><><><><><><><><><><><><><><><<><><><><><><><><><><><><><><><><><>" << endl;
     cout << "<>.................................................JMD AAGENCY.........................................................................<>"
          << endl;
@@ -104,6 +120,7 @@ public:
         cout << "rate per unit:" << rateperunit << endl;
         cout << "DO YOU WANT TO MAKE ANY CHANGES IN THE STOCK?......if no then press 1 and if yes then press 2:" << endl;
         cin >> a;
+        system("CLS");
         if (a == 2) //changes nd displaaying chnged stock
         {
 
@@ -118,6 +135,9 @@ public:
             available = temp;
             ofstream debug("logsheet.txt", ios::app);
             debug << "stock added:" << change << endl;
+            debug << "total stock:" << temp << endl;
+            debug << "billing done remaining stock:" << temp2 << endl;
+            debug << "............................." << endl;
         }
         else //if dont want to change stock.
         {
@@ -142,7 +162,8 @@ public:
         tempamount = amount;
         amount = 0;
         count = tempamount + count;
-
+        ofstream debug("logsheet.txt", ios::app);
+        debug << "After  Billing:" << temp2 << " doz" << endl;
         cout << "........................................................................................................................" << endl;
     }
 };
